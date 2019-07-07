@@ -4,14 +4,14 @@ options
   DEBUG_LOOKAHEAD = true;
 }
 
-PARSER_BEGIN(Fun)
+PARSER_BEGIN(LangX)
 package parser;
 
 import java.io.*;
 import recovery.*; // importa as classes de recuperacao	de erros do AS
 import syntacticTree.*;
 
-public class Fun {
+public class LangX {
    int contParseError = 0; // contador de erros sintaticos
    boolean debug_recovery; // controla verbose de recuperacao de erros
    boolean Menosshort = false;
@@ -23,8 +23,8 @@ public class Fun {
 	    boolean print_tree = false;
 	    
 	    boolean debug = false;
-	    Fun parser = new Fun(System.in);
-	    String filename = "./testes/programaaceito4.txt";
+	    LangX parser = new LangX(System.in);
+	    String filename = "./testes/";
 	    int i;
 	    boolean ms = false;
 	    
@@ -38,7 +38,7 @@ public class Fun {
 			if (args[i].equals("-print_tree")) 
 				print_tree = true;
 			else {
-				System.out.println("Metodo de uso e: Java LangFun [-debug_AS]" + "[-debug_recovery] inputfile");
+				System.out.println("Metodo de uso e: Java LangLangX [-debug_AS]" + "[-debug_recovery] inputfile");
 				System.exit(0);
 			}
 		}
@@ -47,14 +47,14 @@ public class Fun {
 		// if (args[i].equals("-")) {
 		  if (false) { 
 			System.out.println("Lendo entrada padrao..");
-			parser = new Fun(System.in); // cria AS
+			parser = new LangX(System.in); // cria AS
 		}
 		// le do arquivo
 		else {
 		    //filename = args[args.length-1];
 			System.out.println("Lendo do arquivo " +  filename);
 	    	try {
-	    		parser = new Fun (new java.io.FileInputStream(filename) );
+	    		parser = new LangX (new java.io.FileInputStream(filename) );
 	    	} catch (java.io.FileNotFoundException e) {
 	    		System.out.println("Arquivo " + filename + " nao encontrado.");
 	    		return;
@@ -136,9 +136,9 @@ void consumeUntil(RecoverySet g,
 		   }
 		   if ( eof ) throw new ParseEOFException("EOF found prematurely.");
 		}
-} // fun
+} // LangX
 
-PARSER_END(Fun)
+PARSER_END(LangX)
 
 TOKEN_MGR_DECLS : {
 int	countLexError = 0;
@@ -236,7 +236,6 @@ TOKEN :
 | <INT: "int">
 | <STRING: "string">
 | <FLOAT: "float">
-| <BOOLEAN: "boolean">
 | <CHAR: "char">
 }
 
@@ -255,7 +254,6 @@ TOKEN : /* CONSTANTES NUMERICAS */
 TOKEN : {
   <#LETTER: (["a"-"z","A"-"Z"])> 
 | <CONSTANT : (< DIGIT >)+ >
-| <boolean_constant: <TRUE> | <FALSE>  >
 | <char_constant :"'"~[]"'" | "'\\n'" >
 | <IDENTIFIER: <LETTER>(<LETTER>|<DIGIT>)*(["$"])?>
 | <string_constant: "\""( ~["\"","\n","\r"])* "\"" >
@@ -318,7 +316,8 @@ ListNode program() throws ParseEOFException :
 {
   <EOF>	{return null;}
 |
-(  	l = classlist(g)
+(
+  	l = classlist(g)
   	try { 
   		<EOF> { return l; }
     }
@@ -379,8 +378,9 @@ ClassBodyNode classbody(RecoverySet g) throws ParseEOFException :
     t = <LBRACE>
       [ LOOKAHEAD(4) c = classlist(f5)]
       (
-       LOOKAHEAD(3) vd = vardecl(f2) <SEMICOLON>
-		{ 	if (v == null)
+       LOOKAHEAD(4) vd = vardecl(f2) <SEMICOLON>
+		{ 	
+      if (v == null)
 				v = new ListNode(vd);
 			else
 				v.add(vd);
@@ -401,7 +401,7 @@ ClassBodyNode classbody(RecoverySet g) throws ParseEOFException :
 					m.add(md);
 			}
        |
-       LOOKAHEAD(3) vd =  vardecl(f2) <SEMICOLON>
+       LOOKAHEAD(4) vd =  vardecl(f2) <SEMICOLON>
 			{ 	if (v == null)
 				v = new ListNode(vd);
 			else
@@ -425,7 +425,8 @@ VarDeclNode vardecl(RecoverySet g) throws ParseEOFException :
 }
 {
  try { 
-  (    t1 = types(f) t2 = <IDENTIFIER> ( <LBRACKET> <RBRACKET> { k++; })*
+  (
+    t1 = types(f) t2 = <IDENTIFIER> ( <LBRACKET> <RBRACKET> { k++; })*
 	{ l = new ListNode(new VarNode(t2, k)); }
   (LOOKAHEAD(1) assignment(g))?
   (<COMMA> { k = 0; } t2 = <IDENTIFIER> ( <LBRACKET> <RBRACKET> { k++; })*
@@ -464,7 +465,7 @@ Token types(RecoverySet g) throws ParseEOFException :
 }
 {
  try{
-  ( t1 = <INT> | t1 =  <FLOAT> | t1 = <CHAR> | t1 = <STRING> | t1 = <IDENTIFIER> | t1 = <BOOLEAN>)
+  ( t1 = <INT> | t1 =  <FLOAT> | t1 = <CHAR> | t1 = <STRING> | t1 = <IDENTIFIER>)
   {return t1;}
   }catch (ParseException e)
 {
@@ -896,8 +897,6 @@ ExpreNode factor() throws ParseEOFException :
        | 
        t = <string_constant>	{ e = new StringConstNode(t); }
        | 
-       t = <boolean_constant>	{ e = new BooleanConstNode(t); }
-       |
        t = <null_constant>	{ e = new NullConstNode(t); }
        |
        e = lvalue(null)

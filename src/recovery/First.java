@@ -15,33 +15,33 @@ public class First { //implementa os conjuntos first p/ alguns n.terminais
     static public final RecoverySet program = classlist;
 
     static {
-        methoddecl.add(new Integer(FunConstants.INT));
-        methoddecl.add(new Integer(FunConstants.STRING));
-        methoddecl.add(new Integer(FunConstants.IDENTIFIER));
-        methoddecl.add(new Integer(FunConstants.CHAR));
-        methoddecl.add(new Integer(FunConstants.FLOAT));
+        methoddecl.add(new Integer(LangXConstants.INT));
+        methoddecl.add(new Integer(LangXConstants.STRING));
+        methoddecl.add(new Integer(LangXConstants.IDENTIFIER));
+        methoddecl.add(new Integer(LangXConstants.CHAR));
+        methoddecl.add(new Integer(LangXConstants.FLOAT));
 
-        vardecl.add(new Integer(FunConstants.INT));
-        vardecl.add(new Integer(FunConstants.STRING));
-        vardecl.add(new Integer(FunConstants.IDENTIFIER));
-        vardecl.add(new Integer(FunConstants.CHAR));
-        vardecl.add(new Integer(FunConstants.FLOAT));
-        vardecl.add(new Integer(FunConstants.BOOLEAN));
+        vardecl.add(new Integer(LangXConstants.INT));
+        vardecl.add(new Integer(LangXConstants.STRING));
+        vardecl.add(new Integer(LangXConstants.IDENTIFIER));
+        vardecl.add(new Integer(LangXConstants.CHAR));
+        vardecl.add(new Integer(LangXConstants.FLOAT));
+        vardecl.add(new Integer(LangXConstants.BOOLEAN));
 
-        classlist.add(new Integer(FunConstants.CLASS));
+        classlist.add(new Integer(LangXConstants.CLASS));
 
-        constructdecl.add(new Integer(FunConstants.CONSTRUCTOR));
+        constructdecl.add(new Integer(LangXConstants.CONSTRUCTOR));
 
         statlist.addAll(vardecl);
-        statlist.add(new Integer(FunConstants.IDENTIFIER)); // first do atribstat
-        statlist.add(new Integer(FunConstants.PRINT));
-        statlist.add(new Integer(FunConstants.READ));
-        statlist.add(new Integer(FunConstants.RETURN));
-        statlist.add(new Integer(FunConstants.SUPER));
-        statlist.add(new Integer(FunConstants.IF));
-        statlist.add(new Integer(FunConstants.FOR));
-        statlist.add(new Integer(FunConstants.LBRACE));
-        statlist.add(new Integer(FunConstants.BREAK));
-        statlist.add(new Integer(FunConstants.SEMICOLON));       
+        statlist.add(new Integer(LangXConstants.IDENTIFIER)); // first do atribstat
+        statlist.add(new Integer(LangXConstants.PRINT));
+        statlist.add(new Integer(LangXConstants.READ));
+        statlist.add(new Integer(LangXConstants.RETURN));
+        statlist.add(new Integer(LangXConstants.SUPER));
+        statlist.add(new Integer(LangXConstants.IF));
+        statlist.add(new Integer(LangXConstants.FOR));
+        statlist.add(new Integer(LangXConstants.LBRACE));
+        statlist.add(new Integer(LangXConstants.BREAK));
+        statlist.add(new Integer(LangXConstants.SEMICOLON));       
     }
 }

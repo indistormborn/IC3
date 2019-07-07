@@ -57,7 +57,7 @@ public class RecoverySet extends HashSet {
 
         while (it.hasNext()) {
             k = ((Integer) it.next()).intValue();
-            s += (Fun.im(k) + " ");
+            s += (LangX.im(k) + " ");
         }
 
         return s;
