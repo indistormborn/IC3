@@ -91,39 +91,37 @@ public interface LangXConstants {
   /** RegularExpression Id. */
   int FLOAT = 51;
   /** RegularExpression Id. */
-  int BOOLEAN = 52;
+  int BYTE = 52;
   /** RegularExpression Id. */
-  int CHAR = 53;
+  int SHORT = 53;
   /** RegularExpression Id. */
-  int float_constant = 54;
+  int LONG = 54;
   /** RegularExpression Id. */
-  int int_constant = 55;
+  int FINAL = 55;
   /** RegularExpression Id. */
-  int DIGIT = 56;
+  int PUBLIC = 56;
   /** RegularExpression Id. */
-  int LETTER = 57;
+  int PRIVATE = 57;
   /** RegularExpression Id. */
-  int CONSTANT = 58;
+  int PROTECTED = 58;
   /** RegularExpression Id. */
-  int boolean_constant = 59;
+  int int_constant = 59;
   /** RegularExpression Id. */
-  int char_constant = 60;
+  int string_constant = 60;
   /** RegularExpression Id. */
-  int IDENTIFIER = 61;
+  int null_constant = 61;
   /** RegularExpression Id. */
-  int string_constant = 62;
+  int float_constant = 62;
   /** RegularExpression Id. */
-  int TRUE = 63;
+  int IDENTIFIER = 63;
   /** RegularExpression Id. */
-  int FALSE = 64;
+  int LETTER = 64;
   /** RegularExpression Id. */
-  int null_constant = 65;
+  int DIGIT = 65;
   /** RegularExpression Id. */
   int INVALID_LEXICAL = 66;
   /** RegularExpression Id. */
   int INVALID_CONST = 67;
-  /** RegularExpression Id. */
-  int INVALID_CHAR = 68;
 
   /** Lexical state. */
   int DEFAULT = 0;
@@ -186,23 +184,22 @@ public interface LangXConstants {
     "\"int\"",
     "\"string\"",
     "\"float\"",
-    "\"boolean\"",
-    "\"char\"",
-    "<float_constant>",
+    "\"byte\"",
+    "\"short\"",
+    "\"long\"",
+    "\"final\"",
+    "\"public\"",
+    "\"private\"",
+    "\"protected\"",
     "<int_constant>",
-    "<DIGIT>",
-    "<LETTER>",
-    "<CONSTANT>",
-    "<boolean_constant>",
-    "<char_constant>",
-    "<IDENTIFIER>",
     "<string_constant>",
-    "<TRUE>",
-    "<FALSE>",
     "\"null\"",
+    "<float_constant>",
+    "<IDENTIFIER>",
+    "<LETTER>",
+    "<DIGIT>",
     "<INVALID_LEXICAL>",
     "<INVALID_CONST>",
-    "<INVALID_CHAR>",
   };
 
 }

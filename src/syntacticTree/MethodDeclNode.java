@@ -13,5 +13,4 @@ public class MethodDeclNode extends GeneralNode {
 		name = t2;
 		body = b;
 	}
-
 }
